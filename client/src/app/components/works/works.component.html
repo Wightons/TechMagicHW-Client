@@ -1,1 +1,7 @@
-<p>works works!</p>
+<mat-selection-list>
+  @for (work of works; track work._id) {
+  <mat-list-item>{{ work.startDate }}</mat-list-item>
+  } @empty {
+  <p style="user-select: none">There are no work.</p>
+  }
+</mat-selection-list>
