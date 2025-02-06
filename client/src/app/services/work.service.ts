@@ -8,10 +8,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class WorkService {
+  private baseUrl = import.meta.env.NG_APP_BASE_API_URL;
   constructor(private client: HttpClient) {}
 
   getAll(): Observable<Work[]> {
-    let baseUrl = import.meta.env.NG_APP_BASE_API_URL;
-    return this.client.get<Work[]>(baseUrl + routeNames.works);
+    return this.client.get<Work[]>(this.baseUrl + routeNames.works);
+  }
+
+  getByid(id: string) {
+    return this.client.get<Work>(this.baseUrl + routeNames.works);
   }
 }

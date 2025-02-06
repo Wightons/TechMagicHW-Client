@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Work Details</h2>
+<mat-dialog-content>
+  <p><strong>ID:</strong> {{ data._id }}</p>
+  <p><strong>Additional Payment:</strong> {{ data.additionalPayment }}</p>
+  <div>
+    <strong>Employees:</strong>
+    <ul>
+      @for (e of data.employees; track $index) {
+      <li>
+        {{ getFormattedFullname(e) }}
+      </li>
+      }
+    </ul>
+  </div>
+  <p>
+    <strong>Start Date:</strong>
+    {{ getNormalDateTime(data.startDate) }}
+  </p>
+  <p>
+    <strong>Planned End Date:</strong>
+    {{ getNormalDateTime(data.plannedEndDate) }}
+  </p>
+  <p><strong>Work Type:</strong> {{ data.workType.description }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="close()">Close</button>
+</mat-dialog-actions>

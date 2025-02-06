@@ -1,6 +1,16 @@
 <mat-selection-list>
   @for (work of works$ | async; track work._id) {
-  <mat-list-item>{{ work.startDate }}</mat-list-item>
+  <mat-list-item (click)="onWorkSelection(work._id)">
+    <span>
+      {{ work.startDate }}
+    </span>
+    <span>
+      {{ work.plannedEndDate }}
+    </span>
+    <span>
+      {{ work.workType }}
+    </span>
+  </mat-list-item>
   } @empty {
   <p style="user-select: none">There are no work.</p>
   }
