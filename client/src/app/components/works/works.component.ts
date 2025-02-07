@@ -7,10 +7,13 @@ import { AsyncPipe } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { WorkDetailsDialogComponent } from './modal/work-details-dialog/work-details-dialog.component';
 import { getNormalDateTime } from '../../helpers/funcs';
+import { MatButtonModule } from '@angular/material/button';
+import { WorkCreateDialogComponent } from './modal/work-create-dialog/work-create-dialog.component';
+
 @Component({
   selector: 'app-works',
   standalone: true,
-  imports: [MatListModule, AsyncPipe, MatDialogModule],
+  imports: [MatListModule, AsyncPipe, MatDialogModule, MatButtonModule],
   templateUrl: './works.component.html',
   styleUrl: './works.component.css',
 })
@@ -28,11 +31,17 @@ export class WorksComponent {
   }
 
   onWorkSelection(id: string) {
-    this.service.getByid(id).subscribe((work: any) => {
+    this.service.getByid(id).subscribe((work) => {
       this.dialog.open(WorkDetailsDialogComponent, {
         width: '400px',
-        data: work[0],
+        data: work,
       });
+    });
+  }
+
+  onAddWork() {
+    this.dialog.open(WorkCreateDialogComponent, {
+      width: '500px',
     });
   }
 }
