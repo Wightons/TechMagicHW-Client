@@ -7,6 +7,7 @@ import {
 } from '@angular/material/dialog';
 import { Work } from '../../../../models/work';
 import { MatSelectModule } from '@angular/material/select';
+import { getNormalDateTime } from '../../../../helpers/funcs';
 
 @Component({
   selector: 'app-work-details-dialog',
@@ -20,14 +21,12 @@ export class WorkDetailsDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: Work
   ) {}
 
-  getNormalDateTime(dateTime: Date) {
-    return dateTime
-      .toString()
-      .replace(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}).*/, '$3.$2.$1 $4:$5');
-  }
-
   getFormattedFullname(employee: Employee) {
     return `${employee.firstName} ${employee.lastName} ${employee.middleName}`;
+  }
+
+  getNormalDateTime(dateTime: Date) {
+    return getNormalDateTime(dateTime);
   }
 
   close() {

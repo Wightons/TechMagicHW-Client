@@ -2,10 +2,10 @@
   @for (work of works$ | async; track work._id) {
   <mat-list-item (click)="onWorkSelection(work._id)">
     <span>
-      {{ work.startDate }}
+      {{ getNormalDateTime(work.startDate) }}
     </span>
     <span>
-      {{ work.plannedEndDate }}
+      {{ getNormalDateTime(work.plannedEndDate) }}
     </span>
     <span>
       {{ work.workType }}

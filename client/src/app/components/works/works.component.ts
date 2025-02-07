@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { WorkDetailsDialogComponent } from './modal/work-details-dialog/work-details-dialog.component';
+import { getNormalDateTime } from '../../helpers/funcs';
 @Component({
   selector: 'app-works',
   standalone: true,
@@ -20,6 +21,10 @@ export class WorksComponent {
 
   ngOnInit() {
     this.works$ = this.service.getAll();
+  }
+
+  getNormalDateTime(dateTime: Date) {
+    return getNormalDateTime(dateTime);
   }
 
   onWorkSelection(id: string) {
