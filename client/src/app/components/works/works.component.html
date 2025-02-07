@@ -1,3 +1,8 @@
+<div>
+  <button (click)="onAddWork()" style="margin: 5px 20px" mat-button>
+    Add new +
+  </button>
+</div>
 <mat-selection-list>
   @for (work of works$ | async; track work._id) {
   <mat-list-item (click)="onWorkSelection(work._id)">
