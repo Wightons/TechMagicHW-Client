@@ -23,6 +23,10 @@ export class WorksComponent {
   works$ = new Observable<Work[]>();
 
   ngOnInit() {
+    this.loadWorks();
+  }
+
+  loadWorks() {
     this.works$ = this.service.getAll();
   }
 
@@ -40,8 +44,12 @@ export class WorksComponent {
   }
 
   onAddWork() {
-    this.dialog.open(WorkCreateDialogComponent, {
+    const dialogRef = this.dialog.open(WorkCreateDialogComponent, {
       width: '500px',
+    });
+
+    dialogRef.componentInstance.workCreated.subscribe(() => {
+      this.loadWorks();
     });
   }
 }

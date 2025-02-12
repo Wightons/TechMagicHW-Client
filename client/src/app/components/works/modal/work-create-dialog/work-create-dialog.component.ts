@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Output, EventEmitter } from '@angular/core';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import {
   FormBuilder,
@@ -36,12 +36,13 @@ export class WorkCreateDialogComponent {
   workForm: FormGroup;
   employees: Employee[] = [];
   workTypes: WorkType[] = [];
+  @Output() workCreated = new EventEmitter<void>();
 
   ngOnInit() {
-    this.workTypeService.getAll().subscribe((data: any) => {
+    this.workTypeService.getAll().subscribe((data) => {
       this.workTypes = data;
     });
-    this.employeeService.getAll().subscribe((data: any) => {
+    this.employeeService.getAll().subscribe((data) => {
       this.employees = data;
     });
   }
@@ -67,6 +68,7 @@ export class WorkCreateDialogComponent {
       const newWork: Work = this.workForm.value;
       this.workService.create(newWork).subscribe({
         next: () => {
+          this.workCreated.emit();
           this.dialogRef.close();
         },
         error: (error) => {
