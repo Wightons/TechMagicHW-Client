@@ -1,0 +1,21 @@
+.list-item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-right: 16px;
+}
+
+.text-content {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+  padding-left: 16px;
+}

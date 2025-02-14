@@ -9,11 +9,18 @@ import { WorkDetailsDialogComponent } from './modal/work-details-dialog/work-det
 import { getNormalDateTime } from '../../helpers/funcs';
 import { MatButtonModule } from '@angular/material/button';
 import { WorkCreateDialogComponent } from './modal/work-create-dialog/work-create-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-works',
   standalone: true,
-  imports: [MatListModule, AsyncPipe, MatDialogModule, MatButtonModule],
+  imports: [
+    MatListModule,
+    AsyncPipe,
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+  ],
   templateUrl: './works.component.html',
   styleUrl: './works.component.css',
 })
@@ -51,5 +58,13 @@ export class WorksComponent {
     dialogRef.componentInstance.workCreated.subscribe(() => {
       this.loadWorks();
     });
+  }
+
+  onEditWork(workId: string) {
+    console.error('Not implemented Error');
+  }
+
+  onDeleteWork(workId: string) {
+    console.error('Not implemented Error');
   }
 }

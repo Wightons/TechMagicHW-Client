@@ -6,23 +6,34 @@
 <mat-selection-list>
   @for (work of works$ | async; track work._id) {
   <mat-list-item (click)="onWorkSelection(work._id)">
-    <strong>Start: </strong>
-    &nbsp;
-    <span>
-      {{ getNormalDateTime(work.startDate) }}
-    </span>
-    &nbsp;
-    <strong>End: </strong>
-    &nbsp;
-    <span>
-      {{ getNormalDateTime(work.plannedEndDate) }}
-    </span>
-    &nbsp;
-    <strong>Description:</strong>
-    &nbsp;
-    <span>
-      {{ work.workType.description }}
-    </span>
+    <div class="list-item-content">
+      <div class="text-content">
+        <strong>Start: </strong>
+        <span>{{ getNormalDateTime(work.startDate) }}</span>
+        &nbsp;
+        <strong>End: </strong>
+        <span>{{ getNormalDateTime(work.plannedEndDate) }}</span>
+        &nbsp;
+        <strong>Description:</strong>
+        <span>{{ work.workType.description }}</span>
+      </div>
+      <div class="action-buttons">
+        <button
+          mat-icon-button
+          (click)="onEditWork(work._id); $event.stopPropagation()"
+          aria-label="Edit work"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          (click)="onDeleteWork(work._id); $event.stopPropagation()"
+          aria-label="Delete work"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
   </mat-list-item>
   } @empty {
   <p style="user-select: none">There are no work.</p>
