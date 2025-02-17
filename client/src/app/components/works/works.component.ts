@@ -10,6 +10,7 @@ import { getNormalDateTime } from '../../helpers/funcs';
 import { MatButtonModule } from '@angular/material/button';
 import { WorkCreateDialogComponent } from './modal/work-create-dialog/work-create-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
+import { WorkEditDialogComponent } from './modal/work-edit-dialog/work-edit-dialog.component';
 
 @Component({
   selector: 'app-works',
@@ -60,8 +61,15 @@ export class WorksComponent {
     });
   }
 
-  onEditWork(workId: string) {
-    console.error('Not implemented Error');
+  onEditWork(work: Work) {
+    const dialogRef = this.dialog.open(WorkEditDialogComponent, {
+      width: '500px',
+      data: work,
+    });
+
+    dialogRef.componentInstance.workEdited.subscribe(() => {
+      this.loadWorks();
+    });
   }
 
   onDeleteWork(workId: string) {

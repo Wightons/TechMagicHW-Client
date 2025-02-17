@@ -29,4 +29,8 @@ export class WorkService {
       })
     );
   }
+
+  edit(work: Work) {
+    return this.client.patch(this.baseUrl + `/${work._id}`, work);
+  }
 }
