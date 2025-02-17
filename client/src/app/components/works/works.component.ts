@@ -73,6 +73,13 @@ export class WorksComponent {
   }
 
   onDeleteWork(workId: string) {
-    console.error('Not implemented Error');
+    this.service.delete(workId).subscribe(
+      () => {
+        this.loadWorks();
+      },
+      (error) => {
+        console.error('Error deleting work:', error);
+      }
+    );
   }
 }

@@ -31,6 +31,10 @@ export class WorkService {
   }
 
   edit(work: Work) {
-    return this.client.patch(this.baseUrl + `/${work._id}`, work);
+    return this.client.patch<Work>(this.baseUrl + `/${work._id}`, work);
+  }
+
+  delete(id: string) {
+    return this.client.delete<Work>(this.baseUrl + `/${id}`);
   }
 }
