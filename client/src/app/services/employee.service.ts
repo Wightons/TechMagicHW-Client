@@ -8,10 +8,22 @@ import { routeNames } from '../constants/route-names';
   providedIn: 'root',
 })
 export class EmployeeService {
-  private baseUrl = import.meta.env.NG_APP_BASE_API_URL;
+  private baseUrl = import.meta.env.NG_APP_BASE_API_URL + routeNames.employees;
   constructor(private client: HttpClient) {}
 
   getAll(): Observable<Employee[]> {
-    return this.client.get<Employee[]>(this.baseUrl + routeNames.employees);
+    return this.client.get<Employee[]>(this.baseUrl);
+  }
+
+  create(newEmp: Employee) {
+    return this.client.post<Employee>(this.baseUrl, newEmp);
+  }
+
+  edit(emp: Employee) {
+    return this.client.patch<Employee>(this.baseUrl + `/${emp._id}`, emp);
+  }
+
+  delete(id: string) {
+    return this.client.delete<Employee>(this.baseUrl + `/${id}`);
   }
 }
