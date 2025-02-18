@@ -1,1 +1,24 @@
-<p>employees works!</p>
+<div>
+  <button mat-button style="margin: 10px" (click)="onAddEmployee()">
+    Add Employee +
+  </button>
+</div>
+<div class="container responsive-grid">
+  @for (emp of employees$ | async; track emp._id) {
+  <mat-card class="hoverable-card">
+    <mat-card-header>
+      <mat-card-title>{{ emp.middleName }}</mat-card-title>
+      <mat-card-subtitle>{{
+        emp.lastName + " " + emp.firstName
+      }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Salary:</strong>{{ emp.salary }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="onEditEmployee(emp)">Edit</button>
+      <button mat-button (click)="onDeleteEmployee(emp._id)">Delete</button>
+    </mat-card-actions>
+  </mat-card>
+  }
+</div>
