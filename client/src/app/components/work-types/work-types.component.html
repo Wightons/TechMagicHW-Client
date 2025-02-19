@@ -1,1 +1,31 @@
-<p>work-types works!</p>
+<button mat-button style="margin: 10px" (click)="onAddWorkType()">
+  Add new Work Type +
+</button>
+<mat-selection-list>
+  @for (type of workTypes$ | async; track type){
+  <mat-list-item>
+    <div class="work-type-item">
+      <span class="description">{{ type.description }}</span>
+      <span>
+        <span class="price" style="margin-right: 20px"
+          >{{ type.dailyRate }} UAH</span
+        >
+        <button
+          mat-icon-button
+          (click)="onWorkTypeEdit(type); $event.stopPropagation()"
+          aria-label="Edit workType"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          (click)="onWorkTypeDelete(type._id); $event.stopPropagation()"
+          aria-label="Delete workType"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </span>
+    </div>
+  </mat-list-item>
+  }
+</mat-selection-list>

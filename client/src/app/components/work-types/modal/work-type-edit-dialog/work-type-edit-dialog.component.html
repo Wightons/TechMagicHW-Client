@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Edit Work Type</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="workTypeForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <input matInput type="text" formControlName="description" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Daily Rate</mat-label>
+      <input matInput type="number" formControlName="dailyRate" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="close()">Close</button>
+  <button mat-button [disabled]="workTypeForm.invalid" (click)="edit()">
+    Edit
+  </button>
+</mat-dialog-actions>

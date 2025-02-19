@@ -1,0 +1,13 @@
+.work-type-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.description {
+  width: max-content;
+  max-width: 25ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
