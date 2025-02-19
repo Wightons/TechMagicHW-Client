@@ -4,5 +4,10 @@
   <button mat-button routerLink="{{ route.works }}">Works</button>
   <button mat-button routerLink="{{ route.employees }}">Employees</button>
   <button mat-button routerLink="{{ route.workTypes }}">Work Types</button>
+
+  @if(authService.isAuthenticated$ | async){
+
+  <button (click)="authService.logout()" mat-button>Logout</button>
+  }
 </mat-toolbar>
 <router-outlet></router-outlet>
