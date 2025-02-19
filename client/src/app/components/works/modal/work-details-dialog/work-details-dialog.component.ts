@@ -8,11 +8,12 @@ import {
 import { Work } from '../../../../models/work';
 import { MatSelectModule } from '@angular/material/select';
 import { getNormalDateTime } from '../../../../helpers/funcs';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-work-details-dialog',
   standalone: true,
-  imports: [MatDialogModule, MatSelectModule],
+  imports: [MatDialogModule, MatSelectModule, MatButtonModule],
   templateUrl: './work-details-dialog.component.html',
 })
 export class WorkDetailsDialogComponent {

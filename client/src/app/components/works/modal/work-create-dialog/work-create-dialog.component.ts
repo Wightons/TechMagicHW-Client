@@ -17,6 +17,7 @@ import { EmployeeService } from '../../../../services/employee.service';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { WorkService } from '../../../../services/work.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-work-create-dialog',
@@ -29,6 +30,7 @@ import { WorkService } from '../../../../services/work.service';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
+    MatButtonModule,
   ],
   templateUrl: './work-create-dialog.component.html',
 })

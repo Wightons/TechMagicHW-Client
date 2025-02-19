@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { Observable } from 'rxjs';
 import { WorkType } from '../../models/work-type';
@@ -9,6 +9,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { WorkTypeCreateDialogComponent } from './modal/work-type-create-dialog/work-type-create-dialog.component';
 import { WorkTypeEditDialogComponent } from './modal/work-type-edit-dialog/work-type-edit-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-work-types',
@@ -27,6 +28,7 @@ export class WorkTypesComponent {
   workTypes$ = new Observable<WorkType[]>();
 
   constructor(private service: WorkTypeService, private dialog: MatDialog) {}
+  private _errorSnackBar = inject(MatSnackBar);
 
   ngOnInit() {
     this.loadWorkTypes();
@@ -62,8 +64,11 @@ export class WorkTypesComponent {
       next: () => {
         this.loadWorkTypes();
       },
-      error: (err) => {
-        console.error(err);
+      error: () => {
+        this._errorSnackBar.open(
+          'Cannot delete while the corresponding Work exists',
+          'Ok'
+        );
       },
     });
   }

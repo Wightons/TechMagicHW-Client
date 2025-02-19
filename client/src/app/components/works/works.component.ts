@@ -73,13 +73,9 @@ export class WorksComponent {
   }
 
   onDeleteWork(workId: string) {
-    this.service.delete(workId).subscribe(
-      () => {
-        this.loadWorks();
-      },
-      (error) => {
-        console.error('Error deleting work:', error);
-      }
-    );
+    this.service.delete(workId).subscribe({
+      next: () => this.loadWorks(),
+      error: (error) => console.error('Error deleting work:', error),
+    });
   }
 }

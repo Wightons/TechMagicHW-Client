@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Work } from '../models/work';
 import { routeNames } from '../constants/route-names';
-import { catchError, Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -20,14 +20,7 @@ export class WorkService {
   }
 
   create(newWork: Work): Observable<Work> {
-    return this.client.post<Work>(this.baseUrl, newWork).pipe(
-      catchError((error) => {
-        console.error('Error creating work:', error);
-        return throwError(
-          () => new Error('Failed to create work. Please try again later.')
-        );
-      })
-    );
+    return this.client.post<Work>(this.baseUrl, newWork);
   }
 
   edit(work: Work) {

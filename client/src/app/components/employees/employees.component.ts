@@ -1,5 +1,5 @@
 import { Employee } from './../../models/employee';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Observable } from 'rxjs';
 import { EmployeeService } from '../../services/employee.service';
@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { EmployeesCreateDialogComponent } from './modal/employees-create-dialog/employees-create-dialog.component';
 import { EmployeesEditDialogComponent } from './modal/employees-edit-dialog/employees-edit-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-employees',
@@ -18,6 +19,7 @@ import { EmployeesEditDialogComponent } from './modal/employees-edit-dialog/empl
 })
 export class EmployeesComponent {
   employees$ = new Observable<Employee[]>();
+  private _errorSnackBar = inject(MatSnackBar);
 
   ngOnInit() {
     this.loadEmployees();
@@ -52,8 +54,11 @@ export class EmployeesComponent {
   onDeleteEmployee(id: string) {
     this.service.delete(id).subscribe({
       next: () => this.loadEmployees(),
-      error: (err) => {
-        console.error(err);
+      error: () => {
+        this._errorSnackBar.open(
+          'Cannot delete while the corresponding Work exists',
+          'Ok'
+        );
       },
     });
   }
